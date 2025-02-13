@@ -1,37 +1,67 @@
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("myChart").getContext("2d");
 
-    const data = [
-        { day: 0, fingerprint: 0, competitors: 0 },
-        { day: 30, fingerprint: -0.3, competitors: -20 },
-        { day: 60, fingerprint: -0.5, competitors: -40 },
-        { day: 74, fingerprint: -0.7, competitors: -49.1 },
-        { day: 90, fingerprint: -0.6, competitors: -47 },
-        { day: 120, fingerprint: -0.5, competitors: -45 },
-    ];
-
     new Chart(ctx, {
         type: "line",
         data: {
-            labels: data.map((d) => `Day ${d.day}`),
+            labels: ["0", "30", "60", "74", "90", "120"], // X-Axis Days
             datasets: [
                 {
                     label: "Fingerprint",
-                    data: data.map((d) => d.fingerprint),
+                    data: [0, -0.3, -0.5, -0.7, -0.6, -0.5], // Y-Axis values
                     borderColor: "red",
-                    fill: false,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
                 },
                 {
                     label: "Competitors",
-                    data: data.map((d) => d.competitors),
+                    data: [0, -20, -40, -49.1, -47, -45],
                     borderColor: "blue",
-                    fill: false,
-                },
-            ],
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }
+            ]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-        },
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                    mode: "nearest",
+                    intersect: false,
+                    backgroundColor: "white",
+                    titleColor: "black",
+                    bodyColor: "black",
+                    borderColor: "rgba(0, 0, 0, 0.2)",
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: true,
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}%`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: "Days After Initial Identification"
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "Accuracy Dropoff (%)"
+                    },
+                    beginAtZero: false
+                }
+            }
+        }
     });
 });
