@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotter Homepage</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Interactive Chart</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        canvas {
+            max-width: 80%;
+            margin: 20px auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Spotter</h1>
 
-    <!-- Chart Container -->
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
+    <h2>Interactive Accuracy Dropoff Chart</h2>
+    <canvas id="myChart"></canvas>
 
     <script src="script.js"></script>
+
 </body>
 </html>
